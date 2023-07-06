@@ -1,11 +1,21 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import { Canvas, useFrame } from '@react-three/fiber'
+import Box from '@/components/Box'
+import { OrbitControls } from '@react-three/drei'
 
 export default function Home() {
+  return (
+    <Canvas>
+      <ambientLight intensity={0.5} />
+      <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+      <pointLight position={[-10, -10, -10]} />
+      <Box position={[1, 0, 0]} />
+      <OrbitControls />
+    </Canvas>
+  )
+
   return (
     <>
       <Head>
@@ -14,7 +24,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
+      <main className={`${styles.main}`}>
         <div className={styles.description}>
           <p>
             Get started by editing&nbsp;
